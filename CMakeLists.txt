@@ -57,3 +57,14 @@ if(WB_BUILD_TESTS)
   target_link_libraries(wb_test PRIVATE juce::juce_audio_utils juce::juce_dsp
     juce::juce_recommended_config_flags)
 endif()
+
+# Offline "jam" renderer: scripted MIDI + knob automation -> WAV
+if(WB_BUILD_TESTS)
+  juce_add_console_app(wb_jam PRODUCT_NAME "wb_jam")
+  target_sources(wb_jam PRIVATE Tests/Jam.cpp ${WB_SOURCES})
+  target_include_directories(wb_jam PRIVATE Source)
+  target_compile_definitions(wb_jam PRIVATE JUCE_WEB_BROWSER=0 JUCE_USE_CURL=0 WB_TEST_BUILD=1
+    JUCE_STANDALONE_APPLICATION=1)
+  target_link_libraries(wb_jam PRIVATE juce::juce_audio_utils juce::juce_dsp
+    juce::juce_recommended_config_flags)
+endif()

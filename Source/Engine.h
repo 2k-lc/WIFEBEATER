@@ -557,7 +557,8 @@ struct DistSlot
             }
             case 15:
             {
-                const float u = (std::clamp (g * in * 0.2f + X * 0.f, -1.f, 1.f) * 0.5f + 0.5f) * (float) (kCurvePoints - 1);
+                const float v = std::clamp (std::tanh (in * (0.5f + 5.f * drive)) + (X - 0.5f), -1.f, 1.f); // drive pushes the signal across the curve, X offsets it
+                const float u = (v * 0.5f + 0.5f) * (float) (kCurvePoints - 1);
                 const int i0 = std::min (kCurvePoints - 2, (int) u); const float fr = u - (float) i0;
                 const float c0 = curve[i0].load (std::memory_order_relaxed), c1 = curve[i0 + 1].load (std::memory_order_relaxed);
                 y = c0 + fr * (c1 - c0); break;
