@@ -3,21 +3,23 @@
 
 namespace wbui
 {
-const juce::Colour bg { 0xff0a0a0a }, fg { 0xfff0f0f0 }, dim { 0xff3a3a3a }, accent { 0xffff2200 }, panel { 0xff141414 };
+const juce::Colour bg { 0xffffffff }, fg { 0xff000000 }, dim { 0xff808080 }, accent { 0xff0000ee }, panel { 0xffffffff },
+                   visited { 0xff551a8b }, alert { 0xffff0000 }, bevel { 0xffc0c0c0 };
 
 struct WBLookAndFeel : juce::LookAndFeel_V4
 {
     WBLookAndFeel();
-    juce::Font mono (float h, bool bold = true) const;
+    static juce::Font mono (float h, bool bold = false); // name kept; this is the serif face
     void drawRotarySlider (juce::Graphics&, int x, int y, int w, int h, float pos, float a0, float a1, juce::Slider&) override;
     void drawLinearSlider (juce::Graphics&, int x, int y, int w, int h, float pos, float, float, juce::Slider::SliderStyle, juce::Slider&) override;
     void drawToggleButton (juce::Graphics&, juce::ToggleButton&, bool, bool) override;
     void drawComboBox (juce::Graphics&, int w, int h, bool, int, int, int, int, juce::ComboBox&) override;
     void drawButtonBackground (juce::Graphics&, juce::Button&, const juce::Colour&, bool, bool) override;
-    juce::Font getComboBoxFont (juce::ComboBox&) override { return mono (12.f); }
-    juce::Font getTextButtonFont (juce::TextButton&, int) override { return mono (13.f); }
-    juce::Font getLabelFont (juce::Label&) override { return mono (11.f); }
-    juce::Font getPopupMenuFont() override { return mono (13.f); }
+    void drawButtonText (juce::Graphics&, juce::TextButton&, bool, bool) override;
+    juce::Font getComboBoxFont (juce::ComboBox&) override { return mono (15.f); }
+    juce::Font getTextButtonFont (juce::TextButton&, int) override { return mono (16.f); }
+    juce::Font getLabelFont (juce::Label&) override { return mono (14.f); }
+    juce::Font getPopupMenuFont() override { return mono (15.f); }
 };
 }
 
