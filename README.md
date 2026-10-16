@@ -38,6 +38,8 @@ Three serial slots, each with 17 algorithms: Tube, Tape, Diode, Hard Clip, Fuzz,
 **SAFE LIMITER** (on by default): DC blocker and a -0.5 dBFS brickwall limiter on the output. Turn it off for fully raw output at your own risk. Output is always protected against NaN/Inf.
 
 ## Build
+Windows: double-click `build-windows.bat` (needs Visual Studio with the C++ workload, and Git).
+
 ```
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build --parallel
