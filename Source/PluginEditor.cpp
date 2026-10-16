@@ -250,7 +250,7 @@ public:
         {
             const size_t a = (size_t) x * n / (size_t) w, b = jmax (a + 1, (size_t) (x + 1) * n / (size_t) w);
             float mn = 0, mx = 0;
-            for (size_t i = a; i < b && i < n; i += jmax<size_t> (1, (b - a) / 64)) { mn = jmin (mn, s->data[i]); mx = jmax (mx, s->data[i]); }
+            for (size_t i = a; i < b && i < n; i += std::max<size_t> (1, (b - a) / 64)) { mn = jmin (mn, s->data[i]); mx = jmax (mx, s->data[i]); }
             peaks.push_back ({ mn, mx });
         }
     }

@@ -326,7 +326,7 @@ int main (int argc, char** argv)
         const int seg = (int) (t / 6.0);
         if (seg != lastSeg || pos + n >= total)
         {
-            std::printf ("t=%3ds  peak %.2f  rms %.3f\n", lastSeg * 6, secPeak, std::sqrt (secSum / (double) jmax<long> (1, secCnt)));
+            std::printf ("t=%3ds  peak %.2f  rms %.3f\n", lastSeg * 6, secPeak, std::sqrt (secSum / (double) std::max<long> (1, secCnt)));
             secPeak = 0; secSum = 0; secCnt = 0; lastSeg = seg;
         }
     }
